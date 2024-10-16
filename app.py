@@ -1,6 +1,8 @@
 from flask import Flask, request
 import os
 from werkzeug.utils import secure_filename
+# from ocr import ocr
+from baidu_ocr import baidu_ocr
 
 app = Flask(__name__)
 
@@ -17,8 +19,12 @@ def upload_file():
     if file.filename == '':
         return 'No selected file', 400
     filename = secure_filename(file.filename)
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(file_path)
+    print(file_path)
+    baidu_ocr(file_path)
+
     return f'File uploaded successfully: {filename}', 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(debug=True, host='0.0.0.0', port=3000)

@@ -5,20 +5,19 @@ from lark_oapi.api.bitable.v1 import *
 
 
 # SDK 使用说明: https://github.com/larksuite/oapi-sdk-python#readme
-# 以下示例代码是根据 API 调试台参数自动生成，如果存在代码问题，请在 API 调试台填上相关必要参数后再使用
-# 复制该 Demo 后, 需要将 "YOUR_APP_ID", "YOUR_APP_SECRET" 替换为自己应用的 APP_ID, APP_SECRET.
+# 需要将 "YOUR_APP_ID", "YOUR_APP_SECRET" 替换为自己应用的 APP_ID, APP_SECRET.
 def send(field):
     # 创建client
     client = lark.Client.builder() \
-        .app_id("cli_a7843b556af91013") \
-        .app_secret("lQRgzrYko7gF7Ff9WgHmghU6BCan1p7U") \
+        .app_id("your_app_id") \
+        .app_secret("your_app_secret") \
         .log_level(lark.LogLevel.DEBUG) \
         .build()
 
     # 构造请求对象
     request: CreateAppTableRecordRequest = CreateAppTableRecordRequest.builder() \
-        .app_token("EjX4bpk6da4jg8swQQDcCR87nhh") \
-        .table_id("tblhJniJHsahaoaF") \
+        .app_token("your_app_token") \
+        .table_id("table_id") \
         .request_body(AppTableRecord.builder()
             .fields(field)
             .build()) \
